@@ -29,6 +29,29 @@ class JapaneseGrammarUITests: XCTestCase {
     }
     
     func testExample() {
+        
+        let app = XCUIApplication()
+        app.scrollViews.otherElements.icons["JapaneseGrammar"].tap()
+        
+        let tablesQuery2 = app.tables
+        let tablesQuery = tablesQuery2
+        tablesQuery.staticTexts["2016-07-09 06:31:38 +0000"].tap()
+        
+        let masterButton = app.navigationBars.matchingIdentifier("Detail").buttons["Master"]
+        masterButton.tap()
+        
+        let masterNavigationBar = app.navigationBars["Master"]
+        masterNavigationBar.buttons["Edit"].tap()
+        tablesQuery.buttons["Delete 2016-07-09 06:31:38 +0000"].tap()
+        
+        let deleteButton = tablesQuery.buttons["Delete"]
+        deleteButton.tap()
+        tablesQuery.buttons["Delete 2016-07-09 06:31:11 +0000"].tap()
+        deleteButton.tap()
+        masterNavigationBar.buttons["Add"].tap()
+        masterNavigationBar.buttons["Done"].tap()
+        tablesQuery2.childrenMatchingType(.Cell).elementBoundByIndex(2).staticTexts["2016-07-09 06:23:40 +0000"].tap()
+        masterButton.tap()
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
